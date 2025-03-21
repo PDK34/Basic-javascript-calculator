@@ -84,7 +84,24 @@ body{
 }
 
 .screen{
+    padding-top: 40px;
+    border: 2px solid blue;
     display: flex;
-    justify-content: end;
-    font-size: 30px;
+    flex-direction: column;
+    gap: 5px;
+    align-items: end;
+    justify-content: start;
+}
+
+.screen1{
+    height: 50px;
+    font-size: 20px;
+    color:rgb(51, 51, 51) ;
+}
+
+.screen2{
+    font-size: 35px;
+    padding-right: 3px;
+
+
 }
