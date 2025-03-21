@@ -5,7 +5,7 @@ let operation = null;
 let isFirstNumEntered = false;
 let num1 = null;
 let num2 = null;
-
+let result = null;
 
 const numOp = document.querySelector('.numop');
 const op = ['+','-','x','÷']
@@ -21,12 +21,13 @@ numOp.addEventListener('click' ,(e) => {
     let value = e.target.textContent;
     if(!isFirstNumEntered&&num.includes(Number(value))){
     screen.textContent += value;
+    num1 = Number(screen.textContent);
     
     
        }
 
-    if(!isOpEntered&&op.includes(value)){
-        num1 = Number(screen.textContent);
+    if(num1&&!isOpEntered&&op.includes(value)){
+        
         console.log(num1);
         screen.textContent += value;
         operation = value;
@@ -42,14 +43,19 @@ numOp.addEventListener('click' ,(e) => {
     if(isOpEntered&&!isSecondNumEntered&&num.includes(Number(value))){
         screen.textContent += value;
 
-        let num1 = Number(screen.textContent.split(operation)[0]);
-        let num2 = Number(screen.textContent.split(operation)[1]);
-        console.log(num1);
-        console.log(num2);
-        console.log(operations[operation](num1,num2));
-        screen.textContent += ` = ${operations[operation](num1,num2)}`;
-        isSecondNumEntered = true;
+        num1 = Number(screen.textContent.split(operation)[0]);
+        num2 = Number(screen.textContent.split(operation)[1]);
 
+
+
+    }
+
+    if(value === "="){
+        result = operations[operation](num1,num2);
+        screen.textContent = result;
+        num1 = result;
+        isSecondNumEntered = true;
+        isOpEntered = false;
 
     }
 
