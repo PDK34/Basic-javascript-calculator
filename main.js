@@ -33,10 +33,8 @@ numOp.addEventListener('click' ,(e) => {
     if(num1&&!isOpEntered&&op.includes(value)){
         
         
-        console.log(num1);
         screen2.textContent += value;
         operation = value;
-        console.log(operation);
 
         isFirstNumEntered = true;
         isSecondNumEntered = false;
@@ -55,20 +53,29 @@ numOp.addEventListener('click' ,(e) => {
 
     }
 
-    if(value === "="){
+    if((value === "=")&&typeof num1 === 'number' &&typeof num2 == 'number'){
         screen1.textContent = `${num1} ${operation} ${num2}`;
+        if(operation === '÷' && num2===0){
+            screen2.textContent = "ERROR!";
+            isFirstNumEntered = true;
+            isSecondNumEntered=true;
+        }
 
-        result = operations[operation](num1,num2);
+        else{
+            result = operations[operation](num1,num2);
         screen2.textContent = result;
-        num1 = result;
 
+        num1 = result;
+    
         isSecondNumEntered = true;
-        isOpEntered = false;
+        isOpEntered = false;}
+
 
     }
 
     if(value === "CLEAR"){
         screen2.textContent = '';
+        screen1.textContent = '';
 
         isSecondNumEntered = false;
         isOpEntered = false;
