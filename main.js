@@ -6,6 +6,7 @@ let isFirstNumEntered = false;
 let num1 = '';
 let num2 = '';
 let result = '';
+let isDecimal = false;
 
 
 const numOp = document.querySelector('.numop');
@@ -35,6 +36,7 @@ numOp.addEventListener('click' ,(e) => {
         
         screen2.textContent += value;
         operation = value;
+        isDecimal = false;
 
         isFirstNumEntered = true;
         isSecondNumEntered = false;
@@ -83,8 +85,13 @@ numOp.addEventListener('click' ,(e) => {
         isFirstNumEntered = false;
         num1 = null;
         num2 = null;
+        isDecimal = false;
 
 
+    }
+    if((value === '.')&&!isDecimal){
+        screen2.textContent+=value;
+        isDecimal = true;
     }
 
 
